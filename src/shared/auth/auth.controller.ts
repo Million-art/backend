@@ -10,7 +10,7 @@ import { PasswordResetRequestDto } from './dto/password-reset-request.dto';
 import { PasswordResetConfirmDto } from './dto/password-reset-confirm.dto';
 import { SendInviteDto } from './dto/send-invite.dto';
 import { SetPasswordDto } from './dto/set-password.dto';
-import { UserResponseDto } from '../../presentation/dto/user/user-response.dto';
+import { UserResponseDto } from '../../postgreSQL/presentation/dto/user/user-response.dto';
 
 @ApiTags('auth')
 @Controller('auth')

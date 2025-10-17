@@ -5,9 +5,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { UserRepository } from '../../domain/ports/user.repository';
-import { UserRepositoryImpl } from '../../infrastructure/repository/user.repository';
-import { UserModel } from '../../infrastructure/models/user.model';
+import { UserRepository } from '../../postgreSQL/domain/ports/user.repository';
+import { UserRepositoryImpl } from '../../postgreSQL/infrastructure/repository/user.repository';
+import { UserModel } from '../../postgreSQL/infrastructure/models/user.model';
 import { EmailModule } from '../email/email.module';
 import { AuthController } from './auth.controller';
 

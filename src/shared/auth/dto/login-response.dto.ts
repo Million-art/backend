@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Roles } from '../../../domain/interfaces/enums/user.enum';
+import { Roles } from '../../../postgreSQL/domain/interfaces/enums/user.enum';
 
 export class UserDto {
   @ApiProperty({

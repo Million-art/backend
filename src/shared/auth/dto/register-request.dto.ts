@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString, MinLength, IsOptional, IsEnum } from 'class-validator';
-import { Roles } from '../../../domain/interfaces/enums/user.enum';
+import { Roles } from '../../../postgreSQL/domain/interfaces/enums/user.enum';
 
 export class RegisterRequestDto {
   @ApiProperty({

@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Roles } from '../../../domain/interfaces/enums/user.enum';
+import { Roles } from '../../../postgreSQL/domain/interfaces/enums/user.enum';
 
 @Injectable()
 export class RolesGuard implements CanActivate {

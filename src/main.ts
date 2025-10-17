@@ -22,8 +22,12 @@ async function bootstrap() {
   );
 
   // CORS configuration
+  // In development: allows frontend (5173), mini-app (5174), and custom FRONTEND_URL
+  // In production: only allows the configured FRONTEND_URL
   app.enableCors({
-    origin: NODE_ENV === 'production' ? [FRONTEND_URL] : [FRONTEND_URL, 'http://localhost:5173'],
+    origin: NODE_ENV === 'production' 
+      ? [FRONTEND_URL] 
+      : [FRONTEND_URL, 'http://localhost:5173', 'http://localhost:5174'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

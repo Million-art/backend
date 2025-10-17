@@ -1,4 +1,4 @@
-import { Roles } from '../../../domain/interfaces/enums/user.enum';
+import { Roles } from '../../../postgreSQL/domain/interfaces/enums/user.enum';
 
 export interface LoginDto {
   email: string;

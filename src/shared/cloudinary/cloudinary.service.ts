@@ -25,10 +25,28 @@ export class CloudinaryService {
     folder: string = 'materials',
   ): Promise<CloudinaryUploadResult> {
     return new Promise((resolve, reject) => {
+      // Determine resource type based on file MIME type
+      const getResourceType = (mimeType: string): 'raw' | 'image' | 'video' | 'auto' => {
+        if (mimeType.startsWith('image/')) return 'image';
+        if (mimeType.startsWith('video/')) return 'video';
+        if (mimeType.startsWith('audio/')) return 'video'; // Cloudinary uses 'video' for audio
+        if (mimeType === 'application/pdf' || 
+            mimeType.startsWith('application/') || 
+            mimeType.startsWith('text/') ||
+            mimeType.includes('document') ||
+            mimeType.includes('spreadsheet') ||
+            mimeType.includes('presentation')) {
+          return 'raw';
+        }
+        return 'raw'; // Default to raw for unknown types
+      };
+
+      const resourceType = getResourceType(file.mimetype);
+
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: `maraki/${folder}`,
-          resource_type: 'auto',
+          resource_type: resourceType,
           use_filename: true,
           unique_filename: true,
           overwrite: false,

@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException, ConflictException, Inject } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from '../../domain/ports/user.repository';
-import { UserEntity } from '../../domain/entities/user.entity';
-import { Roles } from '../../domain/interfaces/enums';
+import { UserRepository } from '../../postgreSQL/domain/ports/user.repository';
+import { UserEntity } from '../../postgreSQL/domain/entities/user.entity';
+import { Roles } from '../../postgreSQL/domain/interfaces/enums';
 import { EmailService } from '../email/email.service';
 import { LoginDto, RegisterDto, JwtPayload } from './interfaces/auth.interface';
 import * as bcrypt from 'bcryptjs';
