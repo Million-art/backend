@@ -9,7 +9,9 @@ import { PaymentService } from './services/payment.service';
 import { StudentController } from './controllers/student.controller';
 import { PaymentController } from './controllers/payment.controller';
 import { StudentContentController } from './controllers/student-content.controller';
+import { AnalyticsController } from './controllers/analytics.controller';
 import { TelegramStarsProvider } from './providers/telegram-stars.provider';
+import { AnalyticsService } from './services/analytics.service';
 
 import { ConversationSchema, Conversation } from './schemas/conversation.schema';
 
@@ -29,13 +31,14 @@ import { ConversationSchema, Conversation } from './schemas/conversation.schema'
       { name: Payment.name, schema: PaymentSchema },
     ]),
   ],
-      controllers: [StudentController, PaymentController, StudentContentController],
+      controllers: [StudentController, PaymentController, StudentContentController, AnalyticsController],
   providers: [
     StudentService,
     PaymentService,
+    AnalyticsService,
     TelegramStarsProvider,
 
   ],
-  exports: [StudentService, PaymentService, MongooseModule],
+  exports: [StudentService, PaymentService, AnalyticsService, MongooseModule],
 })
 export class MongoModule {}
