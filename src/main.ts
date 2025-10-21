@@ -4,26 +4,17 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { ErrorResponseDto, ValidationErrorResponseDto } from './shared/dto/error-response.dto';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const PORT = configService.get<number>('PORT') || 3000;
+  const PORT = configService.get<number>('PORT') || 3001;
   const NODE_ENV = configService.get<string>('NODE_ENV') || 'development';
-  const FRONTEND_URL = configService.get<string>('FRONTEND_URL') || 'http://localhost:5173';
+  const FRONTEND_URL = configService.get<string>('FRONTEND_URL') || 'http://localhost:5174';
 
-  // Validation pipe
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
+  // Remove the global validation pipe since we're using our custom one in SharedModule
 
-  // CORS configuration
-  // In development: allows frontend (5173), mini-app (5174), and custom FRONTEND_URL
-  // In production: only allows the configured FRONTEND_URL
   app.enableCors({
     origin: NODE_ENV === 'production' 
       ? [FRONTEND_URL] 
@@ -71,6 +62,5 @@ async function bootstrap() {
   });
 
   await app.listen(PORT);
-  console.log(`🚀 Server running on port ${PORT} in ${NODE_ENV} mode`);
 }
 bootstrap();
